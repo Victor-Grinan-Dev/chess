@@ -5,10 +5,14 @@ const colors = {
     white:"#ebecd0"
 }
 
-function Tile({id, color}) {
+function Tile({id, color, imageUrl}) {
   return (
-    <div className='tile' style={{backgroundColor:`${colors[color]}`}}>
-        
+    <div 
+        className='tile' 
+        style={{
+            backgroundColor:`${colors[color]}`,
+            backgroundImage:`url(${imageUrl})`
+        }}>    
     </div>
   )
 }
