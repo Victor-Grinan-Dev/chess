@@ -5,17 +5,33 @@ const colors = {
     white:"#ebecd0"
 }
 
-function Tile({id, color, imageUrl}) {
-  //console.log(imageUrl);
+function Tile({tileId, pieceName, color, imageUrl, action}) {
+
   return (
     <div 
-        className='tile' 
+        
+        id={tileId}
+        className="tile"
         style={{
             backgroundColor:`${colors[color]}`,
-            backgroundImage:`url(${imageUrl})`
-        }}>    
+           
+        }}
+        onClick={action}
+        >    
+       
+          {
+            // if there is an image render this div
+            imageUrl && <div 
+              id={pieceName + ' ' + tileId}
+              className='piece' 
+              onClick={action}
+              style={{
+                  backgroundImage:`url(${imageUrl})`
+              }}>    
+          </div>
+          }
     </div>
   )
 }
 
-export default Tile
+export default Tile;
