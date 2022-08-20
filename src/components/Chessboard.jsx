@@ -14,7 +14,6 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
         ( i + j ) % 2 === 0 ? color = "black" : color = "white";
         allPieces.forEach(piece => {
           if(piece.x === i && piece.y === j){
-            //console.log("piecex: ", piece.x, "i: ", i, "piecey: ", piece.y, "j: ", j)
             imageUrl = piece.image;
           }
         })
@@ -33,7 +32,5 @@ function Chessboard() {
     </div>
   )
 }
-//console.log(tile.id, tile.x, tile.y),
-//console.log(tile.id, tile.x && tile.y),
-//tile.x && tile.y ? imageUrl = tile.image : imageUrl = undefined,
+
 export default Chessboard

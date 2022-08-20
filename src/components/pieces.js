@@ -38,6 +38,8 @@ for(let color = 0; color < piecesColor.length; color++){//twoo colors, this happ
             
             const image = `assets/${piecesNames[piecesType][0] + piecesColor[color]}.png`;
             
+            startingY = color === 0 ? 0 : 7;
+
             //assigning the row number to the right piece:
             if (color === 0){//white
                 if (piecesNames[piecesType][0] === "pawn"){
@@ -46,7 +48,6 @@ for(let color = 0; color < piecesColor.length; color++){//twoo colors, this happ
                 }else{
                     startingY = 0;              
                     switch ( id ) {
-                        //white pieces:
                         case 'rook1_w':
                             startingX = 7;
                             break;
@@ -59,6 +60,7 @@ for(let color = 0; color < piecesColor.length; color++){//twoo colors, this happ
                             break;
                         case 'knight2_w':
                             startingX = 1;
+                            startingY = 0;
                             break;
 
                         case 'bishop1_w':
@@ -67,14 +69,14 @@ for(let color = 0; color < piecesColor.length; color++){//twoo colors, this happ
                         case 'bishop2_w':
                             startingX = 2;
                             break;
+
                         case 'queen_w':
                             startingX = 3;
                             break;
                         case 'king_w':
                             startingX = 4;
                             break;
-
-}
+                    }
                 }
             }else{//black
                 if (piecesNames[piecesType][0] === "pawn"){
@@ -118,7 +120,7 @@ for(let color = 0; color < piecesColor.length; color++){//twoo colors, this happ
             allPieces.push(currentPiece);
 
         }    
-    }
+    };
 };
 
 
