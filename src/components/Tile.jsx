@@ -6,6 +6,7 @@ const colors = {
 }
 
 function Tile({id, color, imageUrl}) {
+  //console.log(imageUrl);
   return (
     <div 
         className='tile' 
