@@ -24,17 +24,10 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
     }
 }
 
-
-const grabPiece = (e) =>{
-  //By pure testing I found that the offset of my app/display is 125px, migth not work in other displays.
-  const offset = 125;
-  if (e.target.className.includes('piece')) {
-    e.target.style.position = "absolute";
-    e.target.style.left = `${e.clientX - offset }px`
-    e.target.style.top = `${e.clienty - offset}px`;
-  }
-  /*
- 
+/*
+const grabpiece = (e) =>{
+  const element = e.currentTarget;
+  if (element.classList.contains('piece')) {
     console.log(e.currentTarget.classList)
 
     const x = e.clientX ;
@@ -42,18 +35,32 @@ const grabPiece = (e) =>{
     element.style.position = "absolute";
     element.style.left = `${x}px`;
     element.style.left = `${y}px`;
- 
-  */
+  }
   
 }
-
+*/
 
 function Chessboard() {
   
+
+  const drop = (e) => {
+    //e.preventDefault();
+    const card_id= e.dataTransfer.getData('card_id');
+    const card = document.getElementById(card_id);
+    card.style.display = 'block';
+
+    e.target.appendChild(card);
+  }
+
+  const dragOver = e => {
+      e.preventDefault();
+  }
+
   return (
     <div 
       className="chessboard"
-      onClick={grabPiece}
+      onDrop={drop}
+      onDragOver={dragOver}
     >    
         {board.map((tile)=>(
           <Tile 
@@ -63,7 +70,6 @@ function Chessboard() {
           pieceName={tile.pieceName}
           color={tile.color} 
           imageUrl={tile.image} 
-          coords={{x:tile.x, y:tile.y}}
           /> 
         ))}
     </div>
