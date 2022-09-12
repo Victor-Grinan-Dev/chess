@@ -28,8 +28,8 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
 }
 
 function Chessboard() {
-  const ref = useRef();
-  const offset = 20;
+  const chessboardRef = useRef();
+  const offset = 20; //20 is the half of the tile size
   let activePiece = null;
 
 const grabPiece = (e) =>{
@@ -39,22 +39,20 @@ const grabPiece = (e) =>{
   posY = parseInt(e.target.className.split(' ')[2],10);
   if (e.target.className.includes('piece')) {
     e.target.style.position = "absolute";//is mandatory to be position absolute
-    e.target.style.left = `${e.clientX - offset }px`//20 is the half of the tile size
+    e.target.style.left = `${e.clientX - offset }px`;
     e.target.style.top = `${e.clientY - offset }px`;
   }
-
   activePiece = e.target;
 }
 
 const movePiece = (e) => {
-  if (e.target.className.includes('piece')) {
- 
+  
   if (activePiece) {
     activePiece.style.position = "absolute";
-    activePiece.style.left = `${e.clientX - offset }px`
-    activePiece.style.top = `${e.clientY  -  offset}px`   
+    activePiece.style.left = `${e.clientX - offset}px`
+    activePiece.style.top = `${e.clientY  - offset}px`   
   }
-}
+ 
 }
 
 const dropPiece = (e) => {
