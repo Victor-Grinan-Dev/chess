@@ -8,6 +8,9 @@ const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const boardHeight = 320;
 const boardWidth = 320;
 const board = [];
+//todo: center this app in the screen
+const extra_width = window.innerWidth - boardWidth
+console.log(extra_width);
 let color;
 let posX;
 let posY;
@@ -28,16 +31,15 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
 }
 
 function Chessboard() {;
-  const offset = 20; //20 is the half of the tile size
+  const offset = 20;
   let activePiece = null;
 
 const grabPiece = (e) =>{
-  //By pure testing I found that the offset of my app/display is 275px, migth not work in other displays.
 
   posX = parseInt(e.target.className.split(' ')[1],10);
   posY = parseInt(e.target.className.split(' ')[2],10);
   if (e.target.className.includes('piece')) {
-    e.target.style.position = "absolute";//is mandatory to be position absolute
+    e.target.style.position = "absolute";
     e.target.style.left = `${e.clientX - offset }px`;
     e.target.style.top = `${e.clientY - offset }px`;
   }
@@ -45,7 +47,6 @@ const grabPiece = (e) =>{
 }
 
 const movePiece = (e) => { 
-  //console.log(chessboardRef.current)
   if (activePiece) {
     activePiece.style.position = "absolute";
     let x;
@@ -59,9 +60,7 @@ const movePiece = (e) => {
     activePiece.style.left = `${x - offset}px`
     activePiece.style.top = `${y  - offset}px`   
   }
- 
 }
-
 const dropPiece = (e) => {
   if(activePiece){
     activePiece = null;
@@ -88,31 +87,4 @@ const dropPiece = (e) => {
     </div>
   )
 }
-
 export default Chessboard;
-
-/*
-const ref = useRef(null);
-
-  useEffect(() => {
-    console.log('className 👉️', ref.current.className);
-
-    // 👇️ check if element contains class
-    if (ref.current.classList.contains('piece')) {
-      console.log('Element contains class');
-    } else {
-      console.log('Element does NOT contain class');
-    }
-  }, []);
-
-  const handleClick = event => {
-    console.log('className 👉️', event.currentTarget.className);
-
-    // 👇️ check if element contains class
-    if (event.currentTarget.classList.contains('piece')) {
-      console.log('Element contains class');
-    } else {
-      console.log('Element does NOT contain class');
-    }
-  };
-*/
