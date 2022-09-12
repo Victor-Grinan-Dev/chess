@@ -1,15 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Tile from './Tile';
 import allPieces from './pieces';
 
 const verticalAxis = new Array(8).fill(1).map((num, i)=> num + i );
 const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
+const boardHeight = 320;
+const boardWidth = 320;
 const board = [];
 let color;
 let posX;
 let posY;
-
 
 for(let j = verticalAxis.length - 1; j >= 0 ; j--){
     for(let i = 0; i < horizontalAxis.length; i++){  
@@ -23,12 +24,10 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
         }
         })
         board.push({id:`${horizontalAxis[i]}${verticalAxis[j]}`, pieceName, color:color, x:i, y:j, image:imageUrl});
-
     }
 }
 
-function Chessboard() {
-  const chessboardRef = useRef();
+function Chessboard() {;
   const offset = 20; //20 is the half of the tile size
   let activePiece = null;
 
@@ -45,12 +44,20 @@ const grabPiece = (e) =>{
   activePiece = e.target;
 }
 
-const movePiece = (e) => {
-  
+const movePiece = (e) => { 
+  //console.log(chessboardRef.current)
   if (activePiece) {
     activePiece.style.position = "absolute";
-    activePiece.style.left = `${e.clientX - offset}px`
-    activePiece.style.top = `${e.clientY  - offset}px`   
+    let x;
+    let y;
+    if(e.clientX < (boardWidth - offset/2) && e.clientX > offset/2 ){
+       x = e.clientX;
+    }
+    if(e.clientY < (boardHeight - offset/2) && e.clientY > offset/2){
+      y = e.clientY;
+    }
+    activePiece.style.left = `${x - offset}px`
+    activePiece.style.top = `${y  - offset}px`   
   }
  
 }
