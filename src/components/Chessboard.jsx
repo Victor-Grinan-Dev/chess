@@ -24,7 +24,7 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
     }
 }
 
-
+let activePiece = null;
 const grabPiece = (e) =>{
   //By pure testing I found that the offset of my app/display is 125px, migth not work in other displays.
   const offset = 125;
@@ -33,27 +33,33 @@ const grabPiece = (e) =>{
     e.target.style.left = `${e.clientX - offset }px`
     e.target.style.top = `${e.clienty - offset}px`;
   }
-  /*
- 
-    console.log(e.currentTarget.classList)
 
-    const x = e.clientX ;
-    const y = e.clientY ;
-    element.style.position = "absolute";
-    element.style.left = `${x}px`;
-    element.style.left = `${y}px`;
- 
-  */
-  
+  activePiece = e.target;
 }
 
+const movePiece = (e) => {
+  const offset = 125;
+  if (activePiece && activePiece.className.includes('piece')) {
+    activePiece.style.position = "absolute";
+    activePiece.style.left = `${e.clientX - offset}px`
+    activePiece.style.top = `${e.clientY - 300}px`;
+  }
+}
+
+const dropPiece = (e) => {
+  if(activePiece){
+    activePiece = null;
+  }
+}
 
 function Chessboard() {
   
   return (
     <div 
       className="chessboard"
-      onClick={grabPiece}
+      onMouseDown={grabPiece}
+      onMouseMove={movePiece}
+      onMouseUp={dropPiece}
     >    
         {board.map((tile)=>(
           <Tile 
