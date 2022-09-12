@@ -5,7 +5,23 @@ const colors = {
     white:"#ebecd0"
 }
 
-function Tile({tileId, pieceName, color, imageUrl, action}) {
+function Tile({tileId, pieceName, color, imageUrl, draggable}) {
+  const showEvent = (e) => {
+    console.log(e)
+  }
+  const dragStart = e => {
+    const target = e.target;
+
+    e.dataTransfer.setData('card_id', target.id);
+
+    setTimeout(() => {
+        target.style.display ="none";
+    }, 0);
+}
+
+const dragOver = e => {
+    e.stopPropagation();
+}
 
   return (
     <div 
@@ -16,7 +32,6 @@ function Tile({tileId, pieceName, color, imageUrl, action}) {
             backgroundColor:`${colors[color]}`,
            
         }}
-        onClick={action}
         >    
        
           {
@@ -24,7 +39,10 @@ function Tile({tileId, pieceName, color, imageUrl, action}) {
             imageUrl && <div 
               id={pieceName + ' ' + tileId}
               className='piece' 
-              onClick={action}
+              onClick={showEvent}
+              draggable = {draggable}
+              onDragStart={dragStart}
+              onDragOver={dragOver}
               style={{
                   backgroundImage:`url(${imageUrl})`
               }}>    

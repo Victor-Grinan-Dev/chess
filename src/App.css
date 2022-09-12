@@ -9,8 +9,8 @@
 /*******chessboard**********/
 
 .chessboard{
-  width: 800px;
-  height: 800px;
+  width: 400px;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
   background-color: grey;
@@ -18,15 +18,15 @@
 }
 
 .tile{
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-content: center;
 }
 
 .piece{
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-content: center;
   background-repeat: no-repeat;

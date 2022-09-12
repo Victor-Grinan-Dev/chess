@@ -24,6 +24,7 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
     }
 }
 
+/*
 const grabpiece = (e) =>{
   const element = e.currentTarget;
   if (element.classList.contains('piece')) {
@@ -37,19 +38,39 @@ const grabpiece = (e) =>{
   }
   
 }
+*/
 
 function Chessboard() {
   
+
+  const drop = (e) => {
+    //e.preventDefault();
+    const card_id= e.dataTransfer.getData('card_id');
+    const card = document.getElementById(card_id);
+    card.style.display = 'block';
+
+    e.target.appendChild(card);
+  }
+
+  const dragOver = e => {
+      e.preventDefault();
+  }
+
   return (
-    <div className="chessboard">    
+    <div 
+      className="chessboard"
+      onDrop={drop}
+      onDragOver={dragOver}
+    >    
         {board.map((tile)=>(
           <Tile 
           key={tile.id} 
           tileId={tile.id} 
+          draggable="true" 
           pieceName={tile.pieceName}
           color={tile.color} 
           imageUrl={tile.image} 
-          action={grabpiece}/> 
+          /> 
         ))}
     </div>
   )
