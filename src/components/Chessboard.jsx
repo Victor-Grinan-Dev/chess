@@ -8,7 +8,11 @@ const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const boardHeight = 320;
 const boardWidth = 320;
 const board = [];
-//todo: center this app in the screen
+//TODO: center this app in the screen
+//add to the left value halve the extra_width of the screen.
+//do same with top, 
+//add a header/title for your app.
+//add a clock to the top
 const extra_width = window.innerWidth - boardWidth
 console.log(extra_width);
 let color;
@@ -34,38 +38,44 @@ function Chessboard() {;
   const offset = 20;
   let activePiece = null;
 
-const grabPiece = (e) =>{
-
-  posX = parseInt(e.target.className.split(' ')[1],10);
-  posY = parseInt(e.target.className.split(' ')[2],10);
-  if (e.target.className.includes('piece')) {
-    e.target.style.position = "absolute";
-    e.target.style.left = `${e.clientX - offset }px`;
-    e.target.style.top = `${e.clientY - offset }px`;
-  }
-  activePiece = e.target;
-}
-
-const movePiece = (e) => { 
-  if (activePiece) {
-    activePiece.style.position = "absolute";
-    let x;
-    let y;
-    if(e.clientX < (boardWidth - offset/2) && e.clientX > offset/2 ){
-       x = e.clientX;
+  const grabPiece = (e) =>{
+    posX = parseInt(e.target.className.split(' ')[1],10);
+    posY = parseInt(e.target.className.split(' ')[2],10);
+    if (e.target.className.includes('piece')) {
+      e.target.style.position = "absolute";
+      e.target.style.left = `${e.clientX - offset }px`;
+      e.target.style.top = `${e.clientY - offset }px`;
     }
-    if(e.clientY < (boardHeight - offset/2) && e.clientY > offset/2){
-      y = e.clientY;
+    activePiece = e.target;
+  }
+
+  const movePiece = (e) => { 
+    if (activePiece) {
+      activePiece.style.position = "absolute";
+      let x;
+      let y;
+      if(e.clientX < (boardWidth - offset/2) && e.clientX > offset/2 ){
+        x = e.clientX;
+      }
+      if(e.clientY < (boardHeight - offset/2) && e.clientY > offset/2){
+        y = e.clientY;
+      }
+      activePiece.style.left = `${x - offset}px`
+      activePiece.style.top = `${y  - offset}px`   
     }
-    activePiece.style.left = `${x - offset}px`
-    activePiece.style.top = `${y  - offset}px`   
   }
-}
-const dropPiece = (e) => {
-  if(activePiece){
-    activePiece = null;
+  const dropPiece = (e) => {
+    e.preventDefault();
+    if(activePiece){
+      //e.target.parentNode.removeChild(e.target)
+      activePiece = null;
+      //activePiece.parentNode.removechild(activePiece)
+      //activePiece = null;
+    }
   }
-}
+  const printElement = (e) => {
+    console.log(e.target)
+  }
   return (
     <div 
       className="chessboard"
@@ -82,6 +92,8 @@ const dropPiece = (e) => {
           color={tile.color} 
           imageUrl={tile.image} 
           coords={{x:tile.x, y:tile.y}}
+          coordsInPx={{x:"pixels from left", y:"pixels from top"}}
+          action={dropPiece}
           /> 
         ))}
     </div>

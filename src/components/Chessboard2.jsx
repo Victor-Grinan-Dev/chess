@@ -61,15 +61,16 @@ function Chessboard() {
       className="chessboard"
       onDrop={drop}
       onDragOver={dragOver}
+      onMauseUp={activePiece = null}
     >    
         {board.map((tile)=>(
           <Tile 
           key={tile.id} 
           tileId={tile.id} 
-          draggable="true" 
           pieceName={tile.pieceName}
           color={tile.color} 
           imageUrl={tile.image} 
+          action={drop}
           /> 
         ))}
     </div>

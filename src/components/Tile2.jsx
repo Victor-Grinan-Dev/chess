@@ -5,7 +5,7 @@ const colors = {
     white:"#ebecd0"
 }
 
-function Tile({tileId, pieceName, color, imageUrl, draggable}) {
+function Tile({tileId, pieceName, color, imageUrl, action}) {
   const showEvent = (e) => {
     console.log(e)
   }
@@ -32,6 +32,7 @@ const dragOver = e => {
             backgroundColor:`${colors[color]}`,
            
         }}
+        onDrop={action}
         >    
        
           {

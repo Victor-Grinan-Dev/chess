@@ -5,7 +5,7 @@ const colors = {
     white:"#ebecd0"
 }
 
-function Tile({tileId, pieceName, color, imageUrl, draggable, coords}) {
+function Tile({tileId, pieceName, color, imageUrl, coords, action}) {
 
 
   return (
@@ -16,6 +16,7 @@ function Tile({tileId, pieceName, color, imageUrl, draggable, coords}) {
             backgroundColor:`${colors[color]}`,     
         }}
         coords={coords}
+        onDrop={action}
         >        
           {imageUrl && <div 
               id={pieceName + ' ' + tileId}
