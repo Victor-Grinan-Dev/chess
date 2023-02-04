@@ -24,8 +24,10 @@ for(let j = verticalAxis.length - 1; j >= 0 ; j--){
     }
 }
 
+
+const grabPiece = (e) =>{
+  console.log(e.currentTarget.classList)
 /*
-const grabpiece = (e) =>{
   const element = e.currentTarget;
   if (element.classList.contains('piece')) {
     console.log(e.currentTarget.classList)
@@ -36,11 +38,12 @@ const grabpiece = (e) =>{
     element.style.left = `${x}px`;
     element.style.left = `${y}px`;
   }
+*/
   
 }
-*/
 
-function Chessboard() {
+
+const Chessboard = () => {
   
 
   const drop = (e) => {
@@ -62,6 +65,7 @@ function Chessboard() {
       onDrop={drop}
       onDragOver={dragOver}
       onMauseUp={activePiece = null}
+      onClick={grabPiece}
     >    
         {board.map((tile)=>(
           <Tile 
@@ -70,7 +74,6 @@ function Chessboard() {
           pieceName={tile.pieceName}
           color={tile.color} 
           imageUrl={tile.image} 
-          action={drop}
           /> 
         ))}
     </div>

@@ -93,7 +93,7 @@ function Chessboard() {;
           imageUrl={tile.image} 
           coords={{x:tile.x, y:tile.y}}
           coordsInPx={{x:"pixels from left", y:"pixels from top"}}
-          action={dropPiece}
+          //action={dropPiece}
           /> 
         ))}
     </div>

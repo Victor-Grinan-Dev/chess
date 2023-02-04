@@ -5,7 +5,7 @@ const colors = {
     white:"#ebecd0"
 }
 
-function Tile({tileId, pieceName, color, imageUrl, coords, action}) {
+const Tile = ({tileId, pieceName, color, imageUrl, coords, action}) => {
 
 
   return (
